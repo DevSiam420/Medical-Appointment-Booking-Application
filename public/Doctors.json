@@ -1,0 +1,80 @@
+[
+  {
+    "id": "1",
+    "name": "Dr. Ahsan Habib",
+    "image": "https://i.ibb.co/9bQw7xY/doctor1.png",
+    "education": "MBBS, FCPS (Cardiology)",
+    "speciality": "Cardiologist",
+    "experience": "10 Years",
+    "registration": "BMDC-12345",
+    "designation": "Senior Consultant",
+    "workplace": "National Heart Foundation",
+    "fee": 1200,
+    "availability": ["Sunday", "Tuesday", "Thursday"]
+  },
+  {
+    "id": "2",
+    "name": "Dr. Nusrat Jahan",
+    "image": "https://i.ibb.co/KyP0mD1/doctor2.png",
+    "education": "MBBS, MS (Gynecology)",
+    "speciality": "Gynecologist",
+    "experience": "8 Years",
+    "registration": "BMDC-23456",
+    "designation": "Consultant",
+    "workplace": "Popular Diagnostic Center",
+    "fee": 1000,
+    "availability": ["Monday", "Wednesday"]
+  },
+  {
+    "id": "3",
+    "name": "Dr. Mahmudul Hasan",
+    "image": "https://i.ibb.co/z2bH7qP/doctor3.png",
+    "education": "MBBS, MD (Neurology)",
+    "speciality": "Neurologist",
+    "experience": "12 Years",
+    "registration": "BMDC-34567",
+    "designation": "Associate Professor",
+    "workplace": "BSMMU",
+    "fee": 1500,
+    "availability": ["Sunday", "Tuesday"]
+  },
+  {
+    "id": "4",
+    "name": "Dr. Farzana Akter",
+    "image": "https://i.ibb.co/7p4q0Fd/doctor4.png",
+    "education": "MBBS, DGO",
+    "speciality": "Gynecologist",
+    "experience": "7 Years",
+    "registration": "BMDC-45678",
+    "designation": "Medical Officer",
+    "workplace": "Square Hospital",
+    "fee": 900,
+    "availability": ["Thursday", "Saturday"]
+  },
+  {
+    "id": "5",
+    "name": "Dr. Tanvir Rahman",
+    "image": "https://i.ibb.co/9tZwVj8/doctor5.png",
+    "education": "MBBS, FCPS (Medicine)",
+    "speciality": "Medicine Specialist",
+    "experience": "9 Years",
+    "registration": "BMDC-56789",
+    "designation": "Consultant",
+    "workplace": "Labaid Hospital",
+    "fee": 1100,
+    "availability": ["Monday", "Wednesday", "Friday"]
+  },
+  {
+    "id": "6",
+    "name": "Dr. Sabiha Islam",
+    "image": "https://i.ibb.co/Jx9p5XL/doctor6.png",
+    "education": "MBBS, MD (Dermatology)",
+    "speciality": "Dermatologist",
+    "experience": "6 Years",
+    "registration": "BMDC-67890",
+    "designation": "Skin Specialist",
+    "workplace": "United Hospital",
+    "fee": 800,
+    "availability": ["Sunday", "Thursday"]
+  }
+]
