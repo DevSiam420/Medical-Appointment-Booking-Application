@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router";
 const Navbar = () => {
   return (
     <div className="sticky top-0 z-50 bg-transparent">
@@ -34,30 +34,31 @@ const Navbar = () => {
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-2xl bg-base-100 rounded-box w-56 ring-1 ring-base-300/70"
               >
                 <li>
-                  <a href="#" className="rounded-lg font-medium">
+                  <Link to="/" className="rounded-lg font-medium">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#bookings" className="rounded-lg font-medium">
-                    My-Bookings
-                  </a>
+                  <Link
+                    to="/AppointmentedDoctor"
+                    className="rounded-lg font-medium"
+                  >
+                    Appointed Doctor
+                  </Link>
                 </li>
+
                 <li>
-                  <a href="#blogs" className="rounded-lg font-medium">
+                  <a href="#" className="rounded-lg font-medium">
                     Blogs
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" className="rounded-lg font-medium">
+                  <a href="#" className="rounded-lg font-medium">
                     Contact Us
                   </a>
                 </li>
                 <li className="mt-2">
-                  <a
-                    href="#emergency"
-                    className="btn btn-primary w-full rounded-full"
-                  >
+                  <a href="#" className="btn btn-primary w-full rounded-full">
                     Emergency
                   </a>
                 </li>
@@ -87,24 +88,22 @@ const Navbar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1 gap-1">
               <li>
+                <Link to="/" className="rounded-lg font-medium">
+                  Home
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/AppointmentedDoctor"
+                  className="rounded-lg font-medium"
+                >
+                  Appointed Doctor
+                </Link>
+              </li>
+              <li>
                 <a
                   href="#"
-                  className="rounded-xl px-3 text-[0.95rem] font-semibold hover:bg-base-200/60 focus:bg-base-200/80"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#bookings"
-                  className="rounded-xl px-3 text-[0.95rem] font-semibold hover:bg-base-200/60 focus:bg-base-200/80"
-                >
-                  My-Bookings
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#blogs"
                   className="rounded-xl px-3 text-[0.95rem] font-semibold hover:bg-base-200/60 focus:bg-base-200/80"
                 >
                   Blogs
@@ -112,7 +111,7 @@ const Navbar = () => {
               </li>
               <li>
                 <a
-                  href="#contact"
+                  href="#"
                   className="rounded-xl px-3 text-[0.95rem] font-semibold hover:bg-base-200/60 focus:bg-base-200/80"
                 >
                   Contact Us
