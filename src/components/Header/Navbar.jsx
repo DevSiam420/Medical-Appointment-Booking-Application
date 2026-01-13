@@ -130,7 +130,7 @@ const Navbar = () => {
                       to="/"
                       className="group relative overflow-hidden rounded-full px-3.5 py-1.5 text-[0.9rem] font-medium text-slate-100/90 hover:text-sky-300 focus-visible:text-sky-300 hover:bg-slate-900/80 focus:bg-slate-900/80 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:ring-offset-0 focus-visible:ring-offset-transparent"
                     >
-                         <span className="relative z-10">Home</span>
+                      <span className="relative z-10">Home</span>
                       <span className="pointer-events-none absolute inset-x-3 bottom-1 h-px bg-gradient-to-r from-sky-500/0 via-sky-500/80 to-sky-500/0 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200" />
                     </Link>
                   </li>
