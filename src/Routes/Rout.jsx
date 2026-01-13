@@ -1,3 +1,4 @@
+// router.jsx (no changes needed)
 import React from "react";
 import { createBrowserRouter } from "react-router";
 import Root from "../Pages/Root/Root";

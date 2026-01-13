@@ -1,16 +1,28 @@
 import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router";
-import { AddToStoreDB } from "../../Utilitys/AddToDB";
+import { AddToStoreDB, GetStoredData } from "../../Utilitys/AddToDB";
 import { toast } from "react-toastify";
 
 const DoctorDetails = () => {
-  const [isRead, setIsRead] = useState(false);
-  const doctors = useLoaderData() || [];
+  // Get doctor id from URL
   const { id } = useParams();
+  const doctorId = Number(id || 0);
 
-  const doctorId = Number(id);
+  // Initialize isRead based on local storage (already appointed or not)
+  const [isRead, setIsRead] = useState(() => {
+    try {
+      const storedIds = GetStoredData ? GetStoredData() : [];
+      return storedIds.includes(doctorId);
+    } catch {
+      return false;
+    }
+  });
 
-  const singleDoctor = doctors.find((doctor) => Number(doctor.id) === doctorId);
+  const doctors = useLoaderData() || [];
+
+  const singleDoctor = doctors.find(
+    (doctor) => Number(doctor.id) === doctorId
+  );
 
   if (!singleDoctor) {
     return (
@@ -41,8 +53,11 @@ const DoctorDetails = () => {
     availability,
   } = singleDoctor;
 
-  // --- Handler Function (logic preserved) ---
+  // --- Handler Function (logic preserved, now guarded) ---
   const HandleMarkAsRead = (DocId) => {
+    // prevent multiple triggers if already marked
+    if (isRead) return;
+
     AddToStoreDB(Number(DocId));
     setIsRead(true);
 
@@ -121,7 +136,7 @@ const DoctorDetails = () => {
                     <div className="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-sky-400/50 via-fuchsia-400/40 to-emerald-400/50 opacity-80 blur-2xl group-hover:opacity-100 group-hover:blur-3xl transition-all duration-500" />
                     <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/80 shadow-[0_18px_70px_rgba(15,23,42,0.9)]">
                       <img
-                        src="/banner-img-1.png"
+                        src={"/banner-img-1.png"}
                         alt={name}
                         className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 object-cover"
                       />
@@ -226,7 +241,7 @@ const DoctorDetails = () => {
                       disabled={isRead}
                       className={`relative inline-flex items-center justify-center overflow-hidden rounded-full px-6 sm:px-8 py-2.5 text-sm font-semibold tracking-wide transition-all duration-300 disabled:cursor-not-allowed ${
                         isRead
-                          ? "bg-emerald-500/90 text-white shadow-[0_0_35px_rgba(34,197,94,0.7)]"
+                          ? "bg-emerald-500/90 text-white shadow-[0_0_35px_rgba(34,197,94,0.7)] opacity-90"
                           : "bg-gradient-to-r from-sky-500 via-indigo-500 to-fuchsia-500 text-white shadow-[0_18px_60px_rgba(56,189,248,0.8)] hover:shadow-[0_22px_80px_rgba(56,189,248,1)] hover:-translate-y-0.5 active:translate-y-0"
                       }`}
                     >

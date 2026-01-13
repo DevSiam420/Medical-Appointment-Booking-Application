@@ -55,7 +55,7 @@ const AppointmentedDoctor = () => {
 
       {appointList.length === 0 ? (
         <div className="mt-6 rounded-3xl border border-dashed border-white/15 bg-slate-950/80 backdrop-blur-xl px-6 py-10 sm:px-8 shadow-[0_18px_80px_rgba(15,23,42,1)]">
-          <div className="flex flex-col items-center text-center gap-3">
+          <div className="pb-10 flex flex-col items-center text-center gap-3">
             <div className="relative h-12 w-12">
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-sky-500 via-fuchsia-500 to-emerald-400 opacity-60 blur-md" />
               <div className="relative flex h-full w-full items-center justify-center rounded-full border border-white/20 bg-slate-900/80">
