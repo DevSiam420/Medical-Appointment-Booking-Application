@@ -23,21 +23,33 @@ const AppointmentedDoctor = () => {
       {/* background glows */}
       <div className="pointer-events-none absolute -top-32 -right-16 h-72 w-72 rounded-full bg-gradient-to-br from-sky-500/30 via-fuchsia-500/25 to-emerald-400/30 blur-3xl -z-10" />
       <div className="pointer-events-none absolute -bottom-32 -left-16 h-72 w-72 rounded-full bg-gradient-to-tr from-indigo-500/30 via-sky-500/25 to-rose-500/25 blur-3xl -z-10" />
-
+     
       {/* header */}
-      <div className="mb-8">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-sky-300/80">
+      <div className="my-15 text-center">
+        <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-sky-300/90">
           Your Appointments
         </p>
-        <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-50">
-          Appointed Doctors{" "}
-          <span className="ml-1 inline-flex items-center justify-center rounded-full border border-white/10 bg-slate-900/80 px-3 py-1 text-sm font-semibold text-sky-300">
+
+        <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-sky-300 via-fuchsia-300 to-emerald-300 bg-clip-text text-transparent">
+            Appointed Doctors
+          </h1>
+
+          <span className="inline-flex items-center justify-center rounded-full border border-sky-400/50 bg-sky-500/15 px-3 py-1 text-xs sm:text-sm font-semibold text-sky-200 shadow-[0_10px_35px_rgba(56,189,248,0.6)]">
+            <span className="mr-1 h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
             {appointList.length}
           </span>
-        </h1>
-        <p className="mt-2 text-sm sm:text-base text-slate-300/80 max-w-2xl">
+        </div>
+
+        {/* small underline accent */}
+        <div className="mt-4 flex justify-center">
+          <span className="h-1 w-24 sm:w-32 rounded-full bg-gradient-to-r from-sky-500 via-fuchsia-500 to-emerald-400" />
+        </div>
+
+        <p className="mt-4 text-sm sm:text-base text-slate-300/85 max-w-2xl mx-auto">
           All the doctors you’ve confirmed an appointment with — neatly
-          organized in one place.
+          organized in one place, so your next visit is always just a click
+          away.
         </p>
       </div>
 
