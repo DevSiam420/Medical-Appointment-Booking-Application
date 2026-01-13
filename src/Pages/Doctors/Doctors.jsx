@@ -3,7 +3,7 @@ import Doctor from "../Doctor/Doctor";
 
 const Doctors = ({ Data }) => {
   return (
-    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-6 sm:mt-10">
+    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-6 sm:mt-10 overflow-hidden">
       {/* Title */}
       <div className="px-6 sm:px-10 py-10 sm:py-12 text-center">
         <h2

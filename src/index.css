@@ -15,5 +15,5 @@ body,
 body {
   background-color: #020617; /* tailwind slate-950 */
   color: #e5e7eb;            /* optional: default text */
-  overflow-x: hidden;        /* <-- fixes horizontal scrollbar */
+  overflow-x: hidden;        /* <-- fixes horizontal scrollbar */        /* <-- fixes horizontal scrollbar */
 }

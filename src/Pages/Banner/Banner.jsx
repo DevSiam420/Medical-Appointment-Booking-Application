@@ -2,7 +2,7 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 mt-4">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 mt-4 overflow-hidden">
       <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-slate-950/90 backdrop-blur-2xl shadow-[0_28px_120px_rgba(15,23,42,1)]">
         {/* outer glow / frame */}
         <div
