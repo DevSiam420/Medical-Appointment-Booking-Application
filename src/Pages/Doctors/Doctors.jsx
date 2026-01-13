@@ -6,13 +6,26 @@ const Doctors = ({ Data }) => {
     <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-6 sm:mt-10">
       {/* Title */}
       <div className="px-6 sm:px-10 py-10 sm:py-12 text-center">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
+        <h2
+          className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight
+                 text-base-content dark:text-gray-100"
+        >
           Our Best Doctors
         </h2>
+
         <div className="mt-4 flex justify-center">
-          <span className="h-1 w-175 rounded-full bg-gradient-to-r from-primary via-secondary to-primary" />
+          <span
+            className="h-1 w-24 sm:w-32 md:w-40 rounded-full
+                     bg-gradient-to-r
+                     from-primary via-secondary to-primary
+                     dark:from-primary/80 dark:via-secondary/80 dark:to-primary/80"
+          />
         </div>
-        <p className="mt-4 max-w-3xl mx-auto text-xs sm:text-sm md:text-base text-base-content/70">
+
+        <p
+          className="mt-4 max-w-3xl mx-auto text-xs sm:text-sm md:text-base
+                text-base-content/70 dark:text-gray-400"
+        >
           Our platform connects you with verified, experienced doctors across
           various specialties — all at your convenience. Whether it’s a routine
           checkup or urgent consultation, book appointments in minutes and

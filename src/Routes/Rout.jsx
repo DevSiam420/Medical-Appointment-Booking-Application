@@ -22,9 +22,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "/AppointmentedDoctor",
-           loader: async () => {
+        loader: async () => {
           const res = await fetch("/Doctors.json");
-          return res.json();},
+          return res.json();
+        },
         Component: AppointmentedDoctor,
       },
       {

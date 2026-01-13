@@ -3,16 +3,26 @@ import React from "react";
 const Footer = () => {
   return (
     <div className="mt-16">
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="relative overflow-hidden rounded-3xl bg-base-100/80 backdrop-blur-xl ring-1 ring-base-300/70 shadow-xl">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 overflow-hidden">
+        {/* background glows */}
+        <div className="pointer-events-none absolute -top-20 -left-10 h-52 w-52 rounded-2xl bg-gradient-to-br from-sky-500/30 via-fuchsia-500/25 to-emerald-400/30 blur-3xl -z-10" />
+        <div className="pointer-events-none absolute -bottom-3 -right-10 h-56 w-56 rounded-full bg-gradient-to-tr from-indigo-500/30 via-sky-500/25 to-rose-500/25 blur-3xl -z-10" />
 
-          <div className="px-6 sm:px-10 py-10 sm:py-14 text-center">
+        <div className="relative overflow-hidden rounded-[2.25rem] border border-white/10 bg-slate-950/90 backdrop-blur-2xl shadow-[0_24px_100px_rgba(15,23,42,1)]">
+          {/* neon frame */}
+          <div className="pointer-events-none absolute -inset-px rounded-[2.4rem] bg-[conic-gradient(from_180deg_at_50%_50%,#38bdf8_0deg,#a855f7_120deg,#22c55e_240deg,#38bdf8_360deg)] opacity-60 blur-[3px]" />
+          <div className="pointer-events-none absolute inset-px rounded-[2.1rem] bg-gradient-to-b from-slate-950 via-slate-950/95 to-slate-950" />
+
+          {/* top line accent */}
+          <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-sky-400/60 to-transparent" />
+
+          <div className="relative px-6 sm:px-10 py-10 sm:py-14 text-center">
             <a href="/" className="inline-flex items-center gap-3">
-              <span className="grid place-items-center size-10 sm:size-11 rounded-full bg-primary text-primary-content shadow-lg ring-8 ring-primary/15">
+              <span className="relative grid place-items-center size-10 sm:size-11 rounded-full bg-gradient-to-br from-sky-500 via-fuchsia-500 to-emerald-400 text-white shadow-[0_14px_45px_rgba(56,189,248,0.9)] ring-4 ring-white/15">
+                <span className="absolute -inset-1 rounded-full bg-white/15 blur-sm" />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="size-5"
+                  className="size-5 relative"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -21,17 +31,17 @@ const Footer = () => {
                   <path strokeLinecap="round" d="M12 6v12M6 12h12" />
                 </svg>
               </span>
-              <span className="text-2xl font-extrabold tracking-tight">
+              <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-sky-300 via-fuchsia-300 to-emerald-300 bg-clip-text text-transparent">
                 Phudu
               </span>
             </a>
 
             <nav className="mt-6 sm:mt-7">
-              <ul className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm sm:text-base text-base-content/80">
+              <ul className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm sm:text-base text-slate-300/85">
                 <li>
                   <a
                     href="#"
-                    className="link link-hover font-semibold rounded-lg px-2 py-1 hover:bg-base-200/60"
+                    className="font-semibold rounded-full px-3 py-1 hover:bg-slate-800/80 hover:text-sky-300 transition-colors duration-200"
                   >
                     Home
                   </a>
@@ -39,7 +49,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="#bookings"
-                    className="link link-hover font-semibold rounded-lg px-2 py-1 hover:bg-base-200/60"
+                    className="font-semibold rounded-full px-3 py-1 hover:bg-slate-800/80 hover:text-sky-300 transition-colors duration-200"
                   >
                     My-Bookings
                   </a>
@@ -47,7 +57,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="#blogs"
-                    className="link link-hover font-semibold rounded-lg px-2 py-1 hover:bg-base-200/60"
+                    className="font-semibold rounded-full px-3 py-1 hover:bg-slate-800/80 hover:text-sky-300 transition-colors duration-200"
                   >
                     Blogs
                   </a>
@@ -55,7 +65,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="#contact"
-                    className="link link-hover font-semibold rounded-lg px-2 py-1 hover:bg-base-200/60"
+                    className="font-semibold rounded-full px-3 py-1 hover:bg-slate-800/80 hover:text-sky-300 transition-colors duration-200"
                   >
                     Contact Us
                   </a>
@@ -63,13 +73,13 @@ const Footer = () => {
               </ul>
             </nav>
 
-            <div className="mx-auto my-7 h-px w-full max-w-3xl bg-gradient-to-r from-transparent via-base-300 to-transparent" />
+            <div className="mx-auto my-7 h-px w-full max-w-3xl bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
             <div className="flex justify-center gap-3 sm:gap-4">
               <a
                 href="#"
                 aria-label="Facebook"
-                className="btn btn-circle btn-ghost ring-1 ring-base-300 hover:ring-primary hover:bg-base-200/60"
+                className="btn btn-circle btn-ghost border border-white/10 bg-slate-900/70 hover:bg-slate-800/80 hover:border-sky-400/60 transition-all duration-200"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -83,11 +93,11 @@ const Footer = () => {
               <a
                 href="#"
                 aria-label="X"
-                className="btn btn-circle btn-ghost ring-1 ring-base-300 hover:ring-primary hover:bg-base-200/60"
+                className="btn btn-circle btn-ghost border border-white/10 bg-slate-900/70 hover:bg-slate-800/80 hover:border-sky-400/60 transition-all duration-200"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="size-5 text-black"
+                  className="size-5 text-white"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
@@ -97,7 +107,7 @@ const Footer = () => {
               <a
                 href="#"
                 aria-label="LinkedIn"
-                className="btn btn-circle btn-ghost ring-1 ring-base-300 hover:ring-primary hover:bg-base-200/60"
+                className="btn btn-circle btn-ghost border border-white/10 bg-slate-900/70 hover:bg-slate-800/80 hover:border-sky-400/60 transition-all duration-200"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +124,7 @@ const Footer = () => {
               <a
                 href="#"
                 aria-label="YouTube"
-                className="btn btn-circle btn-ghost ring-1 ring-base-300 hover:ring-primary hover:bg-base-200/60"
+                className="btn btn-circle btn-ghost border border-white/10 bg-slate-900/70 hover:bg-slate-800/80 hover:border-sky-400/60 transition-all duration-200"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +137,7 @@ const Footer = () => {
               </a>
             </div>
 
-            <p className="mt-6 text-xs sm:text-sm text-base-content/60">
+            <p className="mt-6 text-xs sm:text-sm text-slate-400/80">
               © 2026 Phudu. All rights reserved.
             </p>
           </div>

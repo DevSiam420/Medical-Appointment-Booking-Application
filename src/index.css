@@ -1,2 +1,19 @@
 @import "tailwindcss";
 @plugin "daisyui";
+/* -- */
+/* Make app use full height and remove horizontal scrollbar */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Dark background and no X-axis scroll */
+body {
+  background-color: #020617; /* tailwind slate-950 */
+  color: #e5e7eb;            /* optional: default text */
+  overflow-x: hidden;        /* <-- fixes horizontal scrollbar */
+}

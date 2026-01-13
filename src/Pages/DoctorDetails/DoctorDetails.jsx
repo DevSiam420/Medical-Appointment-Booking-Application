@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 import { AddToStoreDB } from "../../Utilitys/AddToDB";
+import { toast } from "react-toastify";
 
 const DoctorDetails = () => {
+  const [isRead, setIsRead] = useState(false);
   const doctors = useLoaderData() || [];
   const { id } = useParams();
 
-  // 🔥 IMPORTANT FIX
   const doctorId = Number(id);
 
   const singleDoctor = doctors.find((doctor) => Number(doctor.id) === doctorId);
 
   if (!singleDoctor) {
     return (
-      <div className="text-center mt-20 text-red-500 text-xl">
-        Doctor not found
+      <div className="flex items-center justify-center h-[60vh]">
+        <div className="relative overflow-hidden rounded-3xl border border-red-500/30 bg-red-900/20 px-8 py-6 text-center shadow-[0_18px_60px_rgba(248,113,113,0.4)]">
+          <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-red-500/40 blur-2xl" />
+          <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-red-400">
+            Error
+          </p>
+          <p className="mt-2 text-xl font-bold text-red-100">
+            Doctor not found
+          </p>
+        </div>
       </div>
     );
   }
@@ -31,166 +40,215 @@ const DoctorDetails = () => {
     fee,
     availability,
   } = singleDoctor;
-  // --- Handler Function --
-  const HandleMarkAsRead = (id) => {
-    AddToStoreDB(id);
+
+  // --- Handler Function (logic preserved) ---
+  const HandleMarkAsRead = (DocId) => {
+    AddToStoreDB(Number(DocId));
+    setIsRead(true);
+
+    // Toastify on click
+    toast.success(`${name} marked as read`, {
+      icon: "📘",
+      theme: "dark",
+      style: {
+        borderRadius: "9999px",
+        background: "#020617",
+        color: "#e5e7eb",
+        border: "1px solid rgba(56,189,248,0.5)",
+      },
+      progressStyle: {
+        background: "#22c55e",
+      },
+    });
   };
+
   return (
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 my-10 space-y-10">
-      {/* Intro card */}
-      <div className="relative overflow-hidden rounded-[2rem] bg-base-100/80 backdrop-blur-xl ring-1 ring-base-300/60 shadow-[0_10px_40px_rgba(2,8,23,0.06)]">
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[86%] h-24 rounded-full bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 blur-3xl" />
-          <div className="absolute -bottom-28 -right-10 w-80 h-80 rounded-full bg-gradient-to-tr from-primary/10 to-accent/10 blur-3xl" />
-        </div>
-        <div className="px-6 sm:px-10 py-10 text-center">
-          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-base-300/70 bg-base-100/70 px-3 py-1 text-[11px] sm:text-xs">
-            <span className="size-2 rounded-full bg-primary" /> Verified Profile
+    <div className="my-6">
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-10 space-y-10 overflow-hidden">
+        {/* Background gradients */}
+        <div className="pointer-events-none my-2 absolute inset-0 -z-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 rounded-md" />
+        <div className="pointer-events-none absolute -top-24 -right-10 -z-10 h-64 w-64 rounded-full bg-gradient-to-br from-sky-500/40 via-fuchsia-500/30 to-emerald-400/40 blur-3xl opacity-80" />
+        <div className="pointer-events-none absolute -bottom-20 -left-16 -z-10 h-72 w-72 rounded-full bg-gradient-to-tr from-indigo-500/40 via-cyan-500/30 to-rose-400/40 blur-3xl opacity-70" />
+
+        {/* Header / intro */}
+        <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-2xl shadow-[0_28px_120px_rgba(15,23,42,0.9)]">
+          <div className="absolute inset-px rounded-[2.4rem] bg-gradient-to-br from-white/10 via-sky-500/5 to-fuchsia-500/10 opacity-70" />
+          <div className="relative px-6 sm:px-10 py-8 sm:py-10 text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-sky-300/80">
+              Smart Health • Profile
+            </p>
+            <h2 className="mt-3 text-[26px] sm:text-4xl font-extrabold tracking-tight text-slate-50">
+              Doctor’s Profile Details
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-slate-300/80 max-w-2xl mx-auto">
+              A deep dive into the doctor’s background, expertise and
+              availability, wrapped in a premium interface.
+            </p>
           </div>
-          <h2 className="mt-4 text-[28px] sm:text-4xl font-extrabold tracking-tight">
-            Doctor’s Profile Details
-          </h2>
-          <p className="mt-3 text-sm sm:text-base text-base-content/70 max-w-3xl mx-auto">
-            Lorem ipsum dolor sit amet consectetur. Sit enim blandit orci tortor
-            amet. Suscipit sed est fermentum magna. Quis vitae tempus facilisis
-            turpis imperdiet mattis donec dignissim volutpat.
-          </p>
         </div>
-      </div>
 
-      {/* Profile card */}
-      <div className="mx-auto max-w-6xl">
-        <div className="group relative overflow-hidden rounded-[2rem] bg-base-100/90 backdrop-blur ring-1 ring-base-300/70 shadow-[0_10px_40px_rgba(2,8,23,0.06)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(2,8,23,0.10)]">
-          <div
-            aria-hidden
-            className="absolute -inset-px rounded-[2rem] bg-gradient-to-br from-primary/0 via-primary/20 to-fuchsia-500/0 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"
-          />
-          <div className="relative p-6 sm:p-8">
-            <div className="flex flex-col md:flex-row items-start gap-6">
-              {/* Avatar */}
-              <div className="relative overflow-hidden rounded-2xl ring-1 ring-base-300/70 shadow-md">
-                <img
-                  src="/banner-img-1.png"
-                  alt={name}
-                  className="w-44 h-44 sm:w-52 sm:h-52 object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-accent/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        {/* Main profile card */}
+        <div className="mx-auto max-w-6xl">
+          <div className="group relative overflow-hidden rounded-[2.25rem] border border-white/10 bg-white/5 backdrop-blur-2xl shadow-[0_24px_100px_rgba(15,23,42,0.9)]">
+            {/* animated border glow */}
+            <div className="pointer-events-none absolute -inset-[1px] rounded-[2.4rem] bg-[conic-gradient(from_180deg_at_50%_50%,#38bdf8_0deg,#a855f7_120deg,#22c55e_240deg,#38bdf8_360deg)] opacity-70 blur-[3px]" />
+            <div className="pointer-events-none absolute inset-px rounded-[2.1rem] bg-slate-950/80" />
+
+            {/* top-right ultra-modern twist / badge */}
+            <div className="absolute right-4 top-4 z-20 flex items-center gap-2">
+              <div className="relative h-10 w-10">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-sky-400 via-fuchsia-500 to-emerald-400 opacity-60 blur-md animate-pulse" />
+                <div className="relative flex h-full w-full items-center justify-center rounded-full border border-white/20 bg-slate-900/80 backdrop-blur">
+                  <div className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
+                </div>
               </div>
+              <div className="hidden sm:flex flex-col text-[10px] uppercase tracking-[0.2em] text-slate-300/80">
+                <span className="font-semibold">
+                  {isRead ? "Profile synced" : "Live profile"}
+                </span>
+                <span className="text-[9px] text-slate-400/90">
+                  {isRead ? "Marked as read" : "Ready to review"}
+                </span>
+              </div>
+            </div>
 
-              {/* Content */}
-              <div className="flex-1">
-                <h2 className="text-2xl sm:text-[28px] font-extrabold tracking-tight leading-tight">
-                  {name}
-                </h2>
-                <p className="text-sm text-base-content/70">{education}</p>
-                <p className="text-sm text-base-content/70">{speciality}</p>
+            {/* content */}
+            <div className="relative p-6 sm:p-8 lg:p-10">
+              <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
+                {/* left: avatar + quick stats */}
+                <div className="flex-shrink-0 flex flex-col items-center gap-4">
+                  <div className="relative">
+                    <div className="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-sky-400/50 via-fuchsia-400/40 to-emerald-400/50 opacity-80 blur-2xl group-hover:opacity-100 group-hover:blur-3xl transition-all duration-500" />
+                    <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/80 shadow-[0_18px_70px_rgba(15,23,42,0.9)]">
+                      <img
+                        src="/banner-img-1.png"
+                        alt={name}
+                        className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 object-cover"
+                      />
+                      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
+                    </div>
+                  </div>
 
-                {/* Info rows */}
-                <div className="mt-5 grid gap-2.5 text-sm">
-                  <div className="flex items-center gap-2 rounded-xl border border-base-300/70 bg-base-100/80 px-3 py-2">
-                    <span className="text-base-content/60 font-semibold">
-                      Designation:
-                    </span>
-                    <span className="font-medium">{designation}</span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-xl border border-base-300/70 bg-base-100/80 px-3 py-2">
-                    <span className="text-base-content/60 font-semibold">
-                      Experience:
-                    </span>
-                    <span className="font-medium">{experience}</span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-xl border border-base-300/70 bg-base-100/80 px-3 py-2">
-                    <span className="text-base-content/60 font-semibold">
-                      Workplace:
-                    </span>
-                    <span className="font-medium">{workplace}</span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-xl border border-base-300/70 bg-base-100/80 px-3 py-2">
-                    <span className="text-base-content/60 font-semibold">
-                      Registration:
-                    </span>
-                    <span className="font-medium">{registration}</span>
+                  {/* mini stats */}
+                  <div className="grid grid-cols-2 gap-3 w-full max-w-xs text-xs sm:text-[13px]">
+                    <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5">
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400">
+                        Experience
+                      </p>
+                      <p className="mt-1 font-semibold text-slate-50">
+                        {experience}
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5">
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400">
+                        Fee
+                      </p>
+                      <p className="mt-1 font-semibold text-emerald-400">
+                        ৳ {fee}
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5 col-span-2">
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400">
+                        Workplace
+                      </p>
+                      <p className="mt-1 font-semibold text-slate-100 truncate">
+                        {workplace}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Availability */}
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {availability?.map((day, index) => (
-                    <span
-                      key={index}
-                      className="badge badge-success badge-sm rounded-full transition-transform duration-200 hover:scale-105"
+                {/* right: details */}
+                <div className="flex-1 space-y-6">
+                  {/* name + designation */}
+                  <div>
+                    <h2 className="text-2xl sm:text-[30px] font-extrabold tracking-tight text-slate-50">
+                      {name}
+                    </h2>
+                    <p className="mt-1 text-sm sm:text-base text-sky-300/90 font-semibold">
+                      {designation}
+                    </p>
+                    <p className="mt-0.5 text-xs sm:text-sm text-slate-300/80">
+                      {speciality}
+                    </p>
+                    <p className="mt-2 text-xs sm:text-sm text-slate-400/90">
+                      {education}
+                    </p>
+                  </div>
+
+                  {/* info grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
+                    <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                      <p className="text-[11px] uppercase tracking-[0.2em] text-slate-400">
+                        Registration No.
+                      </p>
+                      <p className="mt-1 font-semibold text-slate-100 break-all">
+                        {registration}
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-white/10 bg-gradient-to-r from-sky-500/10 via-fuchsia-500/10 to-emerald-500/10 px-4 py-3">
+                      <p className="text-[11px] uppercase tracking-[0.2em] text-slate-400">
+                        Consultation Fee
+                      </p>
+                      <p className="mt-1 text-lg font-extrabold text-emerald-400">
+                        ৳ {fee}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* availability */}
+                  <div className="space-y-3">
+                    <p className="text-[11px] uppercase tracking-[0.25em] text-slate-400">
+                      Availability
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {availability?.map((day, index) => (
+                        <span
+                          key={index}
+                          className="relative inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-500/5 px-3 py-1.5 text-[11px] sm:text-xs font-medium text-sky-100/90 backdrop-blur-md"
+                        >
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          {day}
+                        </span>
+                      ))}
+                      {!availability?.length && (
+                        <span className="text-xs text-slate-400">
+                          No schedule information available.
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* action button */}
+                  <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
+                    <button
+                      onClick={() => HandleMarkAsRead(doctorId)}
+                      disabled={isRead}
+                      className={`relative inline-flex items-center justify-center overflow-hidden rounded-full px-6 sm:px-8 py-2.5 text-sm font-semibold tracking-wide transition-all duration-300 disabled:cursor-not-allowed ${
+                        isRead
+                          ? "bg-emerald-500/90 text-white shadow-[0_0_35px_rgba(34,197,94,0.7)]"
+                          : "bg-gradient-to-r from-sky-500 via-indigo-500 to-fuchsia-500 text-white shadow-[0_18px_60px_rgba(56,189,248,0.8)] hover:shadow-[0_22px_80px_rgba(56,189,248,1)] hover:-translate-y-0.5 active:translate-y-0"
+                      }`}
                     >
-                      {day}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Fee */}
-                <div className="mt-5 flex flex-wrap items-center gap-2 text-primary font-semibold">
-                  <span className="badge badge-outline badge-sm border-primary text-primary rounded-full">
-                    Fee
-                  </span>
-                  <span className="leading-none">
-                    Consultation Fee: ৳ {fee}
-                  </span>
-                </div>
-
-                {/* CTA row (optional, looks premium) */}
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <button
-                    onClick={() => HandleMarkAsRead(id)}
-                    className="btn btn-primary rounded-full px-6 shadow-[0_10px_30px_rgba(37,99,235,0.35)] hover:shadow-[0_16px_44px_rgba(37,99,235,0.45)] hover:scale-[1.01] active:scale-[0.99] transition-transform"
-                  >
-                    Book Appointment
-                  </button>
-                  <button className="btn btn-ghost rounded-full px-5 border-base-300 hover:bg-base-200/60">
-                    Contact Clinic
-                  </button>
+                      {!isRead && (
+                        <span className="absolute inset-0 rounded-full bg-white/20 opacity-0 hover:opacity-40 transition-opacity" />
+                      )}
+                      <span className="relative flex items-center gap-2">
+                        {!isRead && (
+                          <span className="relative flex h-3 w-3">
+                            <span className="absolute inline-flex h-full w-full rounded-full bg-white opacity-60 animate-ping" />
+                            <span className="relative inline-flex h-3 w-3 rounded-full bg-white" />
+                          </span>
+                        )}
+                        {isRead
+                          ? "✔ Appointment Confirmed"
+                          : "Book Appointment"}
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Hairline divider */}
-            <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-base-300 to-transparent" />
-          </div>
-        </div>
-      </div>
-
-      {/* Appointment card */}
-      <div className="group relative overflow-hidden rounded-[2rem] bg-base-100/90 backdrop-blur ring-1 ring-base-300/70 shadow-[0_10px_40px_rgba(2,8,23,0.06)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(2,8,23,0.10)]">
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -bottom-20 right-0 w-72 h-72 rounded-full bg-gradient-to-tr from-primary/10 to-accent/10 blur-3xl" />
-          <div className="absolute -top-14 left-0 w-56 h-56 rounded-full bg-gradient-to-br from-secondary/10 to-primary/10 blur-3xl" />
-        </div>
-
-        <div className="px-6 sm:px-8 py-8">
-          <div className="relative text-center">
-            <h4 className="text-lg sm:text-xl font-extrabold tracking-tight">
-              Book an Appointment
-            </h4>
-            <span className="absolute right-0 top-0 badge badge-success badge-sm sm:badge-md rounded-full">
-              Doctor Available Today
-            </span>
-          </div>
-
-          <div className="mt-5 border-t border-dashed border-base-300/80 pt-4">
-            <p className="text-sm font-semibold">Availability</p>
-          </div>
-
-          <div className="mt-3">
-            <div className="alert alert-warning rounded-2xl py-3 shadow-sm">
-              <span className="text-sm">
-                Due to high patient volume, we are currently accepting
-                appointments for today only. We appreciate your understanding
-                and cooperation.
-              </span>
-            </div>
-          </div>
-
-          <div className="mt-6">
-            <button className="btn btn-primary btn-lg w-full rounded-full font-bold tracking-tight shadow-[0_10px_30px_rgba(37,99,235,0.35)] hover:shadow-[0_16px_44px_rgba(37,99,235,0.45)] hover:scale-[1.01] active:scale-[0.99] transition-transform">
-              Book Appointment Now
-            </button>
           </div>
         </div>
       </div>
